@@ -1,0 +1,20 @@
+<odoo>
+<!--    report reocord for pdf-->
+    <report
+            id="report_bundle"
+            model="package.bundle"
+            string="Bundle Report"
+            report_type="qweb-pdf"
+            name="sale_package.bundle_report"
+            file="sale_package.bundle_report"/>
+<!--    report reocord for excel -->
+    <report
+            id="excel_report_bundle"
+            model="package.bundle"
+            string="Excel Bundle Report"
+            report_type="xlsx"
+            name="sale_package.bundle_report_xls"
+            file="sale_package.bundle_report_xls"/>
+
+
+</odoo>

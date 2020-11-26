@@ -1,0 +1,36 @@
+<odoo>
+  <data>
+    <!-- sale order inherit view -->
+    <record id="sale_order_inherit" model="ir.ui.view">
+        <field name="name">sale.order.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+
+            <field name="partner_id" position="after">
+                <field name="package_name" widget="many2many_tags"/>
+            </field>
+            <xpath expr="//page[@name='other_information']" position="after">
+                <page string="Package Info" >
+                    <field name="package_info"/>
+                </page>
+            </xpath>
+        </field>
+    </record>
+    <!-- view of  sale package  -->
+
+    <record model="ir.actions.act_window" id="sale_package.action_window">
+      <field name="name">Sale Package</field>
+      <field name="res_model">sale_package.sale_package</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- sale package inventory menu  -->
+
+    <menuitem name="Sale Package" id="sale_package.menu_root" parent="stock.menu_stock_config_settings" sequence="1"/>
+    <!--  sale package inventory menu categories -->
+    <menuitem name="Package" id="sale_package.menu_1" parent="sale_package.menu_root"
+              action="sale_package.action_window"/>
+
+  </data>
+</odoo>

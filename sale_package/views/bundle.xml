@@ -1,0 +1,110 @@
+<odoo>
+    <data>
+
+        <!-- action of inverntory menu for bundle -->
+        <record id="package_bundle_menu_action" model="ir.actions.act_window">
+            <field name="name">Package Bundle</field>
+            <field name="res_model">package.bundle</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+
+
+<!-- menu item view for bundle in inventory master data -->
+        <menuitem id="package_bundle_menu"
+              name="Package Bundle"
+              parent="stock.menu_stock_inventory_control"
+              action="package_bundle_menu_action"/>
+
+
+
+
+
+
+
+
+        <record id="package_bundle_tree_view" model="ir.ui.view">
+            <field name="name">Package Bundle</field>
+            <field name="model">package.bundle</field>
+            <field name="arch" type="xml">
+
+                <tree create="false">
+                    <field name="sequence_no"/>
+                    <field name="sale_order_name"/>
+                </tree>
+            </field>
+        </record>
+
+
+
+
+         <record id="package_bundle_form_view" model="ir.ui.view">
+            <field name="name">Package Bundle</field>
+            <field name="model">package.bundle</field>
+            <field name="arch" type="xml">
+                <form create="false" edit="false">
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="sequence_no" readonly="1"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="sale_order_name"/>
+                                <field name="sale_order_partner"/>
+                                <field name="sale_person" readonly="1"/>
+                            </group>
+                            <group>
+                                <field name="sale_order_date"/>
+                                <field name="sale_order_expected_date"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Order Details">
+                                <field name="sale_order_line">
+
+                                        <tree>
+                                        <field name="name" string="Product"/>
+                                        <field name="product_uom_qty"/>
+                                        <field name="package_name"/>
+                                        <field name="width_package"/>
+                                        <field name="height_package"/>
+                                        <field name="length_package"/>
+                                        <field name="weight_package"/>
+                                        </tree>
+
+
+                                 </field>
+
+                            </page>
+                        </notebook>
+
+
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </data>
+
+
+
+
+
+
+
+</odoo>

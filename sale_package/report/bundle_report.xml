@@ -1,0 +1,119 @@
+<!--report format xml-->
+<odoo>
+     <template id="bundle_report">
+            <t t-call="web.html_container">
+                <t t-call="web.external_layout">
+                    <div class="oe_structure"/>
+                        <h2 align="center">Bundle Report</h2>
+
+
+
+                    <div align="center" >
+                        <strong >
+
+                                Salesman: <text  t-esc="sale_person"/>
+                        </strong>
+                    </div>
+                    <div align="center" >
+
+                        <strong>
+                            Date From:<text t-esc="date_from"/>
+                        </strong>
+                    </div>
+                    <div align="center" >
+                        <strong>
+                            Date To:<text t-esc="date_to"/>
+                        </strong>
+                    </div>
+
+
+                    <table class="table table-condensed">
+                        <thead>
+                            <tr>
+                                <th style="text-align:left;"><string>Serial No</string> </th>
+                                <th style="text-align:left;"><string>Package Bundle Name</string> </th>
+                                <th style="text-align:left;"><string>Product Name</string> </th>
+                                <th style="text-align:left;"><string>Product Quantity</string> </th>
+                                <th style="text-align:left;"><string>Width</string> </th>
+                                <th style="text-align:left;"><string>Height</string> </th>
+                                <th style="text-align:left;"><string>weight</string> </th>
+
+                            </tr>
+                        </thead>
+                         <tbody>
+                           <!--  serial number generation-->
+
+                                        <t t-set="i" t-value="1" />
+                                        <t t-foreach="vals" t-as="doc">
+                                            <tr>
+
+                                                <td style="text:align:left;">
+                                                    <b>
+                                                        <span t-esc="i"/>
+
+                                                    </b>
+                                                    <t t-set="i" t-value="i+1"/>
+                                                </td>
+                                                <td colspan="6">
+                                                    <b>
+                                                        <span t-att-style="style" t-esc="doc['seq']"/>
+                                                    </b>
+                                                </td>
+                                            </tr>
+                                            <t t-set="j" t-value="1"/>
+                                            <t t-foreach="doc['value']" t-as="docs">
+                                            <tr>
+                                                <td>
+                                                    <span t-att-style="style" t-esc="i-1"/>
+                                                    <span t-att-style="style" t-esc="j"/>
+                                                    <t t-set="j" t-value="j+1"/>
+                                                </td>
+
+
+
+<!--                                                <td style="text:align:left;">-->
+<!--                                                    <span t-att-style="style" t-esc="doc['sequence_no']"/>-->
+<!--                                                </td>-->
+                                                <td style="text:align:left;">
+                                                    <span t-att-style="style" t-esc="docs['package_name']"/>
+                                                </td>
+
+                                                <td style="text:align:left;">
+                                                    <span t-att-style="style" t-esc="docs['product']"/>
+                                                </td>
+                                                <td style="text:align:left;">
+                                                    <span t-att-style="style" t-esc="docs['quantity']"/>
+                                                </td>
+
+                                                <td style="text:align:left;">
+                                                    <span t-att-style="style" t-esc="docs['package_width']"/>
+                                                </td>
+                                                <td style="text:align:left;">
+                                                    <span t-att-style="style" t-esc="docs['package_height']"/>
+                                                </td>
+                                                <td style="text:align:left;">
+                                                    <span t-att-style="style" t-esc="docs['package_weight']"/>
+                                                </td>
+                                            </tr>
+                                            </t>
+                                        </t>
+
+                                    </tbody>
+
+
+
+
+                    </table>
+
+
+
+                </t>
+
+
+
+
+            </t>
+        </template>
+
+</odoo>
+
