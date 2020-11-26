@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+ <odoo>
+    <data>
+        <template id="assets_frontend" inherit_id="website.assets_frontend" name="Shop">
+            <xpath expr="." position="inside">
+                <script type="text/javascript" src="/website_clear_cart/static/src/js/clear_cart_button.js"/>
+            </xpath>
+        </template>
+
+        <template id="clear_cart" inherit_id="website_sale.cart" customize_show="True" name="Clear Cart Button" priority="32">
+            <xpath expr="//*[starts-with(@href,'/shop/checkout')]" position="before">
+                <t t-if="website_sale_order and website_sale_order.website_order_line">
+                    <a href="" id="clear_cart_button" class="btn btn-secondary mb32 d-none d-xl-inline-block"><span
+                            class="fa fa-trash-o"
+                        /> Clear Cart</a>
+                </t>
+            </xpath>
+        </template>
+
+    </data>
+</odoo>

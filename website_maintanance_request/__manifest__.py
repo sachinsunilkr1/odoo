@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "website_product_quantity",
+    'name': "website_maintanance_request",
 
     'summary': """
         Short (1 phrase/line) summary of the module's purpose, used as
@@ -18,16 +18,17 @@
     # for the full list
     'category': 'Uncategorized',
     'version': '14.0.1.0.0',
-    'sequence': 3,
+    'sequence': 1,
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'website_sale'],
+    'depends': ['base', 'website', 'mail', 'hr_maintenance'],
 
     # always loaded
     'data': [
         # 'security/ir.model.access.csv',
         'views/views.xml',
         'views/templates.xml',
+        'views/mail_template.xml'
     ],
     # only loaded in demonstration mode
     'demo': [
