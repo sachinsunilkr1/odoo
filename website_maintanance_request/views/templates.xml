@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="maintenance_form" name="Request Form">
+        <t t-call="website.layout">
+            <div id="wrap">
+                <div class="container">
+                    <div class="col-md-12">
+                        <form action="/maintenance/form">
+
+                           <div class="form-group form-field o_website_form_required_custom">
+                            <br/>
+                            <br/>
+                            <p>
+                                <h2>&amp;nbsp;
+                                    <b>Website Maintenance Request</b>
+                                </h2>
+                            </p>
+                            <br/>
+                            <label class="col-md-3 col-sm-4 control-label" for="subject">Subject</label>
+                            <div class="col-lg-7 col-md-8">
+                                <input type="text" class="form-control o_website_form_input" name="subject"/>
+                            </div>
+                        </div>
+
+                        <div class="form-group form-field o_website_form_required_custom">
+                            <input type="text" class="form-control o_website_form_input team" name="team"
+                                   style="visibility: hidden; display: none;"/>
+                            <label class="col-md-3 col-sm-4 control-label" for="from">Team</label>
+                             <div class="col-lg-7 col-md-8">
+                                <select class="form-control o_website_form_input" id="team_id" name="teams"
+                                        required="">
+                                    <option value="">Select Team</option>
+                                    <t t-foreach="team_selection" t-as="team">
+                                        <option t-att-value="team['id']">
+                                            <t t-esc="team['name']"/>
+                                        </option>
+                                    </t>
+                                </select>
+                            </div>
+                            <br/>
+                            <label class="col-md-3 col-sm-4 control-label date_to" for="to">Equipment</label>
+                            <div class="col-lg-7 col-md-8">
+                                <select class="form-control o_website_form_input" id="equipment" name="equipment"
+                                        required="">
+                                    <option value="">Select Equipment</option>
+                                    <t t-foreach="equipment_selection" t-as="equipment">
+                                        <option t-att-value="equipment['id']">
+                                            <t t-esc="equipment['name']"/>
+                                        </option>
+                                    </t>
+                                </select>
+                            </div>
+                            <br/>
+                            <label class="col-md-3 col-sm-4 control-label date_to" for="to">Priority</label>
+                            <div class="col-lg-7 col-md-8">
+                                <select class="form-control o_website_form_input" id="priority_id" name="stars"
+                                        required="">
+                                    <option value="">Select Priority</option>
+                                    <option value="0">Very Low</option>
+                                    <option value="1">Low</option>
+                                    <option value="2">Normal</option>
+                                    <option value="3">High</option>
+                                </select>
+                            </div>
+                            <br/>
+                        </div>
+
+                        <div class="form-group form-field o_website_form_required_custom">
+                            <label class="col-md-3 col-sm-4 control-label" for="description">Details</label>
+                            <div class="col-md-7 col-sm-8">
+                                <textarea class="form-control" rows="5" name="details"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-group" >
+                            <div class="col-md-offset-3 col-sm-offset-4 col-sm-8 col-md-7" >
+                                <button type="submit" class="btn btn-primary btn-lg o_website_form_send">Submit</button>
+                                <span id="o_website_form_result">
+                                </span>
+                            </div>
+                        </div>
+                        <br/>
+                        <br/>
+                        <br/>
+                        </form>
+                    </div>
+                </div>
+              </div>
+          </t>
+    </template>
+    <template id="maintenance_form_success" name="Maintenance Request Successfully Submitted">
+        <t t-call="website.layout">
+            <div id="wrap">
+                <div class="container">
+                    <div class="col-md-12">
+                        <div class="alert alert-success">
+                            Maintenance Request Send successfully.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>
