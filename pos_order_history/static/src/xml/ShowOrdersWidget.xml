@@ -45,7 +45,12 @@
         <td><t t-esc='order.pos_reference' /></td>
         <td><t t-esc='order.partner_id[1]' /></td>
         <td><t t-esc='order.session_id[1]'/></td>
-        <td align="right"><t t-esc='order.amount_total'/></td>
+        <td align="right" >
+
+                 <t  t-esc='order.amount_total' />
+
+        </td>
+
     </tr>
 </t>
 </template>
