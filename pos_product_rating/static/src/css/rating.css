@@ -1,0 +1,11 @@
+.pos .product .rating {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    vertical-align: down;
+    color: white;
+    line-height: 13px;
+    background: #7f82ac;
+    padding: 2px 5px;
+    border-radius: 2px;
+}
