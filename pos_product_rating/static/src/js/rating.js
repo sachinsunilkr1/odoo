@@ -10,16 +10,24 @@ odoo.define('pos_product_rating.rating', function (require) {
 
     //    loading field prodcut ratings to pos
     models.load_fields("product.product", ['product_ratings']);
-    console.log("hiii",models)
+    console.log(" rating models",models)
 
-     var _super_orderline = models.Orderline.prototype;
+
+     var _super_order = models.Orderline.prototype;
         models.Orderline = models.Orderline.extend({
             export_for_printing: function() {
-                var line = _super_orderline.export_for_printing.apply(this,arguments);
+                var line = _super_order.export_for_printing.apply(this,arguments);
+
                 line.product_ratings = this.get_product().product_ratings;
+                console.log("line", line.product_ratings);
                 return line;
             },
-        });
+
+    });
+
+
+
+
 
 
 
