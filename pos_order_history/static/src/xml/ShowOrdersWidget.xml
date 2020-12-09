@@ -1,5 +1,6 @@
 <template>
-<t t-name="ShowOrdersWidget">
+<!--Order History Screen template-->
+    <t t-name="ShowOrdersWidget">
   <div class="clientlist-screen screen">
     <div class="screen-content">
        <section class="top-content">
@@ -45,9 +46,8 @@
         <td><t t-esc='order.pos_reference' /></td>
         <td><t t-esc='order.partner_id[1]' /></td>
         <td><t t-esc='order.session_id[1]'/></td>
-        <td align="right" >
-
-                 <t  t-esc='order.amount_total' />
+        <td align="right" ><t  t-esc='order.amount_total'
+                     t-options='{"widget": "monetary" }' />
 
         </td>
 

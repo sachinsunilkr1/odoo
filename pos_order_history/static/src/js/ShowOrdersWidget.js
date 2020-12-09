@@ -79,7 +79,7 @@ var ShowOrdersWidget = pos_screens.ScreenWidget.extend({
             this.$('.back').click(function(){
                 self.gui.back();
             });
-//            ['partner_id','=',this.pos.get_client()]
+
             var pos_orders = this.pos.pos_orders;
             this.render_list(pos_orders);
         },
@@ -88,32 +88,37 @@ var ShowOrdersWidget = pos_screens.ScreenWidget.extend({
             if (contents){
                 contents.innerHTML = "";
                 for(var i = 0, len = Math.min(orders.length,1000); i < len; i++) {
-                    if (orders[i]) {
-                    console.log("call this",this)
-                    var ab=this.pos.get_client().id;
-
-                    if(!ab){
+                    if (orders[i] && this.pos.get_client()) {
 
 
-                                    var order = orders[i];
-                                    var clientline_html = QWeb.render('ShowOrderLines', {widget: this, order: order});
-                                    var orderline = document.createElement('tbody');
-                                    orderline.innerHTML = clientline_html;
-                                    orderline = orderline.childNodes[1];
-                                    contents.appendChild(orderline);
+//     from here it filter the data for the selected customer
+                    if(orders[i].partner_id[0] == this.pos.get_client().id){
+                        console.log("call order",order)
+                        var order = orders[i];
+                        var clientline_html = QWeb.render('ShowOrderLines', {widget: this, order: order});
+                        var orderline = document.createElement('tbody');
+                        orderline.innerHTML = clientline_html;
+                        orderline = orderline.childNodes[1];
+                        contents.appendChild(orderline);
+                    }
+                    }
+
+
+                    else if(orders[i]){
+                        var order = orders[i];
+
+                        var clientline_html = QWeb.render('ShowOrderLines', {widget: this, order: order});
+                        var orderline = document.createElement('tbody');
+                        orderline.innerHTML = clientline_html;
+                        orderline = orderline.childNodes[1];
+                        contents.appendChild(orderline);
 
                     }
 
-                    else if(orders[i].partner_id[0] == this.pos.get_client().id){
-                                    var order = orders[i];
-                                    var clientline_html = QWeb.render('ShowOrderLines', {widget: this, order: order});
-                                    var orderline = document.createElement('tbody');
-                                    orderline.innerHTML = clientline_html;
-                                    orderline = orderline.childNodes[1];
-                                    contents.appendChild(orderline);
-                    }
 
-                   }
+
+
+
                 }
             }
         },

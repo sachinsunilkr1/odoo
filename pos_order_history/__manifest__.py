@@ -21,7 +21,7 @@
 
     # any module necessary for this one to work correctly
     'depends': ['base', 'point_of_sale'],
-    'sequence': 1,
+    'sequence': 2,
 
     # always loaded
     'data': [

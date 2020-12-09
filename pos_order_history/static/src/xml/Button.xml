@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--Order Histroy Button Template-->
 <templates id="template" xml:space="preserve">
-
     <t t-name="ShowOrderButton">
         <div class='control-button js_discount'>
             <i class='fa fa-tag' /> Order History
