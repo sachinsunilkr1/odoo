@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates id="template" xml:space="preserve">
+
+    <t t-inherit="point_of_sale.ProductItem" t-inherit-mode="extension" owl="1">
+        <xpath expr="//div[hasclass('product-name')]" position="after">
+            <t t-if="props.product.product_ratings">
+                <span class="rating "  >
+                    <i style="color:gold;" class="fa fa-star"><t t-esc="props.product.product_ratings"/></i>
+                </span>
+
+            </t>
+        </xpath>
+    </t>
+
+
+    <t t-name="OrderReceipt" t-inherit="point_of_sale.OrderReceipt" t-inherit-mode="extension" owl="1">
+        <xpath expr="//span[hasclass('price_display')]" position="after">
+           <t t-if="line.product_ratings">
+               <div>
+                    <span >
+          ( <t t-esc="line.product_ratings" align="left"/><i class="fa fa-star"></i>)
+            </span>
+               </div>
+
+
+
+      </t>
+        </xpath>
+    </t>
+</templates>
