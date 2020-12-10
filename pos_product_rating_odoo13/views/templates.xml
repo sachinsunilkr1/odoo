@@ -1,0 +1,13 @@
+<odoo>
+    <data>
+        <template id="assets" inherit_id="point_of_sale.assets">
+          <xpath expr="." position="inside">
+               <link rel="stylesheet" type="text/scss" href="/pos_product_rating/static/src/css/rating.css"/>
+
+
+              <script type="text/javascript" src="/pos_product_rating/static/src/js/rating.js"></script>
+
+          </xpath>
+        </template>
+    </data>
+</odoo>

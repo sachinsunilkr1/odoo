@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<templates>
+
+   <t t-extend="Product">
+        <t t-jquery=".price-tag" t-operation="prepend">
+        <t t-if="product.product_ratings">
+<!--            <div>-->
+                <span class="rating "  >
+                    <i class="fa fa-star"><t t-esc="product.product_ratings"/></i>
+
+
+                </span>
+<!--            </div>-->
+        </t>
+    </t>
+</t>
+
+<t t-extend="OrderReceipt">
+    <t t-jquery=".price_display" t-operation="after">
+      <t t-if="line">
+<!--        <div class="pos-receipt-left-padding">-->
+            <span style="text-align: right;">
+          ( <t t-esc="line.product_ratings" align="left"/><i class="fa fa-star"></i>)
+            </span>
+<!--        </div>-->
+      </t>
+    </t>
+</t>
+
+
+
+</templates>
+
+
