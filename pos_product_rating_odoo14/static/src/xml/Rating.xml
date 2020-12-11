@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <templates id="template" xml:space="preserve">
-
-    <t t-inherit="point_of_sale.ProductItem" t-inherit-mode="extension" owl="1">
+     <t t-inherit="point_of_sale.ProductItem" t-inherit-mode="extension" owl="1">
         <xpath expr="//div[hasclass('product-name')]" position="after">
             <t t-if="props.product.product_ratings">
                 <span class="rating "  >
@@ -14,9 +13,9 @@
 
 
     <t t-name="OrderReceipt" t-inherit="point_of_sale.OrderReceipt" t-inherit-mode="extension" owl="1">
-        <xpath expr="//span[hasclass('price_display')]" position="after">
+        <xpath expr="//WrappedProductNameLines" position="before">
            <t t-if="line.product_ratings">
-               <div>
+               <div class="pos-receipt-left-padding">
                     <span >
           ( <t t-esc="line.product_ratings" align="left"/><i class="fa fa-star"></i>)
             </span>
@@ -27,4 +26,24 @@
       </t>
         </xpath>
     </t>
-</templates>
+
+
+    <t t-name="OrderReceipt" t-inherit="point_of_sale.OrderReceipt" t-inherit-mode="extension" owl="1">
+        <xpath expr="(//*[contains(@class, 'pos-receipt-left-padding')])[last()]" position="after">
+           <t t-if="line.product_ratings">
+               <div class="pos-receipt-left-padding">
+                    <span >
+          ( <t t-esc="line.product_ratings" align="left"/><i class="fa fa-star"></i>)
+            </span>
+               </div>
+
+
+
+      </t>
+        </xpath>
+    </t>
+
+
+
+  </templates>
+
