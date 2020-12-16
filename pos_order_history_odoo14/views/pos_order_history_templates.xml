@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <template id="order_assets" inherit_id="point_of_sale.assets">
+          <xpath expr="." position="inside">
+              <script type="text/javascript" src="/pos_order_history/static/js/OrderHistoryButton.js"/>
+              <script type="text/javascript" src="/pos_order_history/static/js/OrderHistoryScreen.js"/>
+
+
+
+
+
+          </xpath>
+        </template>
+
+</odoo>
