@@ -9,7 +9,7 @@ odoo.define('pos_order_history.OrderHistoryScreen', function (require) {
     var models = require('point_of_sale.models');
     var PosModelSuper = models.PosModel;
     const ProductScreen = require('point_of_sale.ProductScreen');
-
+//order.get_client_name()
 
  models.load_models({
             model: 'pos.order',
@@ -66,100 +66,44 @@ models.PosModel = models.PosModel.extend({
 
 
 
-
 class OrderHistoryScreen extends IndependentToOrderScreen {
-        constructor() {
+          constructor() {
             super(...arguments);
             useListener('close-screen', this.close);
-            useListener('filter-selected', this._onFilterSelected);
-            useListener('search', this._onSearch);
-            var self =this;
-            this.searchDetails = {};
-            this.filter = null;
-            this._initializeSearchFieldConstants();
-            console.log("this",self);
+
+            console.log("ord",this);
+
+
+
+//             console.log(yello);
+
+
         }
-//        mounted() {
-//            posbus.on('ticket-button-clicked', this, this.close);
-//            this.env.pos.get('orders').on('add remove change', () => this.render(), this);
-//            this.env.pos.on('change:selectedOrder', () => this.render(), this);
-//        }
-//        willUnmount() {
-//            posbus.off('ticket-button-clicked', this);
-//            this.env.pos.get('orders').off('add remove change', null, this);
-//            this.env.pos.off('change:selectedOrder', null, this);
-//        }
-//        _onFilterSelected(event) {
-//            this.filter = event.detail.filter;
-//            this.render();
-//        }
-//        _onSearch(event) {
-//            const searchDetails = event.detail;
-//            Object.assign(this.searchDetails, searchDetails);
-//            this.render();
-//        }
-//        /**
-//         * Override to conditionally show the new ticket button.
-//         */
-//        get showNewTicketButton() {
-//            return true;
-//        }
-//        get orderList() {
-//            console.log("order list",this.env.pos.order)
-//            return this.env.pos.get_order_list();
-////            this.get('orders').models;
-//        }
+
         get filteredOrderList() {
-           var data = this.env.pos.order
-           for(var order in data){
-           order.name
+//        console.log("yello",this.env.pos.order);
+//        console.log("client name",this.env.pos.attributes.selectedClient.id)
+            return this.env.pos.order;
 
 
-           }
-        }
-        selectOrder(order) {
-        console.log("return this",this)
-            this._setOrder(order);
-            if (order === this.env.pos.get_order()) {
-                this.close();
-            }
-        }
-        _setOrder(order) {
-            this.env.pos.set_order(order);
-        }
 
 
-        getDate(order) {
-            return moment(order.creation_date).format('YYYY-MM-DD hh:mm A');
-        }
-        getTotal(order) {
-            return this.env.pos.format_currency(order.get_total_with_tax());
-        }
-        getCustomer(order) {
-            return order.get_client_name();
-        }
-        getCardholderName(order) {
-            return order.get_cardholder_name();
-        }
-        getEmployee(order) {
-            return order.employee.name;
-        }
-        getStatus(order) {
-            const screen = order.get_screen_data();
-            return this.constants.screenToStatusMap[screen.name];
+
+
+
+
         }
 
 
 
 
-        _initializeSearchFieldConstants() {
-            this.constants = {};
-            Object.assign(this.constants, {
-                searchFieldNames: Object.keys(this._searchFields),
-                screenToStatusMap: this._screenToStatusMap,
-            });
-        }
+
+
+
+
+
     }
+
     OrderHistoryScreen.template = 'OrderHistoryScreen';
 
     Registries.Component.add(OrderHistoryScreen);

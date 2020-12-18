@@ -6,44 +6,33 @@
             <div class="screen-content">
                 <div class="controls">
                     <div class="buttons">
-                        <button t-if="showNewTicketButton" class="highlight" t-on-click="createNewOrder">New Order</button>
                         <button class="discard" t-on-click="trigger('close-screen')">Discard</button>
                     </div>
-                    <SearchBar config="searchBarConfig" placeholder="'Search Tickets...'" />
+
                 </div>
                 <div class="orders">
                     <div class="header-row">
                         <div class="col start wide">Date</div>
                         <div class="col start wide">Receipt Number</div>
                         <div class="col start">Customer</div>
-                        <div class="col start wide" t-if="showCardholderName()">Cardholder Name</div>
-                        <div class="col start">Employee</div>
+
                         <div class="col end">Total</div>
-                        <div class="col start narrow">Status</div>
-                        <div class="col center very-narrow" name="delete"></div>
+
                     </div>
                     <t t-foreach="filteredOrderList" t-as="order" t-key="order.cid">
-                        <div class="order-row pointer" t-on-click="selectOrder(order)">
+                        <div class="order-row pointer" >
                             <div class="col start wide">
-                                <t t-esc="getDate(order)"></t>
+                                <t t-esc="order.create_date"></t>
                             </div>
                             <div class="col start wide">
                                 <t t-esc="order.name"></t>
                             </div>
                             <div class="col start">
-                                <t t-esc="getCustomer(order)"></t>
+                                <t t-esc="order.partner_id[1]"></t>
                             </div>
-                            <div t-if="showCardholderName()" class="col start">
-                                <t t-esc="getCardholderName(order)"></t>
-                            </div>
-                            <div class="col start">
-                                <t t-esc="getEmployee(order)"></t>
-                            </div>
+
                             <div class="col end">
-                                <t t-esc="getTotal(order)"></t>
-                            </div>
-                            <div class="col start narrow">
-                                <t t-esc="getStatus(order)"></t>
+                                <t t-esc="order.amount_total"></t>
                             </div>
 
 
