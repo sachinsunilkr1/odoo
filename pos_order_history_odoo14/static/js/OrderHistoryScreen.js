@@ -9,8 +9,8 @@ odoo.define('pos_order_history.OrderHistoryScreen', function (require) {
     var models = require('point_of_sale.models');
     var PosModelSuper = models.PosModel;
     const ProductScreen = require('point_of_sale.ProductScreen');
-//order.get_client_name()
 
+//Loads Moadel into pos
  models.load_models({
             model: 'pos.order',
             fields: ['id', 'name', 'session_id', 'state', 'pos_reference', 'partner_id', 'amount_total','lines', 'amount_tax','sequence_number', 'fiscal_position_id', 'pricelist_id', 'create_date'],
@@ -33,7 +33,7 @@ odoo.define('pos_order_history.OrderHistoryScreen', function (require) {
         },
 
     });
-
+//Model extending for new order to display in the pos
 models.PosModel = models.PosModel.extend({
   _save_to_server: function (orders, options) {
    var result_new = PosModelSuper.prototype._save_to_server.call(this, orders, options);
@@ -58,50 +58,34 @@ models.PosModel = models.PosModel.extend({
             };
             orders_list.push(new_order);
             self.pos_orders = orders_list;
-            self.gui.screen_instances.ShowOrdersWidget.render_list(orders_list);
+
         }
         return result_new;
     },
 });
 
-
+//Define the Order History Screen
 
 class OrderHistoryScreen extends IndependentToOrderScreen {
           constructor() {
             super(...arguments);
             useListener('close-screen', this.close);
-
-            console.log("ord",this);
-
-
-
-//             console.log(yello);
-
-
         }
-
+// getter for passing the order list to qweb
         get filteredOrderList() {
-//        console.log("yello",this.env.pos.order);
-//        console.log("client name",this.env.pos.attributes.selectedClient.id)
             return this.env.pos.order;
-
-
-
-
-
-
-
+        }
+// getter for passing the selected client id to the qweb
+        get SelectedClient(){
+        return this.env.pos.attributes.selectedClient.id
+        }
+// getter for passing the selected client id to the qweb
+        get SelectedClientName(){
+            if( this.env.pos.attributes.selectedClient==null){
+            return 0;
+            }
 
         }
-
-
-
-
-
-
-
-
-
     }
 
     OrderHistoryScreen.template = 'OrderHistoryScreen';

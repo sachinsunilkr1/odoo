@@ -20,29 +20,12 @@ odoo.define('pos_order_history.OrderHistoryButton', function(require) {
 
         }
 
-
         }
         OrderHistoryButton.template = 'HistoryButton';
         ProductScreen.addControlButton({
         'component' : OrderHistoryButton,
         'condition' : function(){
-        return this.env.pos
-
-//            var domain = [];
-//            var fields = [];
-//            var pos_orders = rpc.query({
-//                model: 'pos.order',
-//                method: 'search_read',
-//                args: [domain,fields],
-//
-//            }).then(function (fields) {
-//            console.log("loaded fields",fields); });
-//            return fields;
-
-
-
-
-
+        return this.env.pos;
 
             },
 

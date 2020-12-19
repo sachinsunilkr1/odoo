@@ -21,21 +21,42 @@
                     </div>
                     <t t-foreach="filteredOrderList" t-as="order" t-key="order.cid">
                         <div class="order-row pointer" >
-                            <div class="col start wide">
-                                <t t-esc="order.create_date"></t>
-                            </div>
-                            <div class="col start wide">
-                                <t t-esc="order.name"></t>
-                            </div>
-                            <div class="col start">
-                                <t t-esc="order.partner_id[1]"></t>
-                            </div>
+                            <t t-if="SelectedClientName != 0">
+                                 <t t-if="order.partner_id[0]==SelectedClient">
+                                    <div class="col start wide">
+                                        <t t-esc="order.create_date"></t>
+                                    </div>
+                                    <div class="col start wide">
+                                        <t t-esc="order.name"></t>
+                                    </div>
+                                    <div class="col start">
+                                        <t t-esc="order.partner_id[1]"></t>
+                                    </div>
 
-                            <div class="col end">
-                                <t t-esc="order.amount_total"></t>
-                            </div>
+                                    <div class="col end">
+                                        <t t-esc="order.amount_total"></t>
+                                    </div>
+
+                                 </t>
+                            </t>
+                            <t t-elif="SelectedClientName==0">
+                                <div class="col start wide">
+                                    <t t-esc="order.create_date"></t>
+                                </div>
+                                <div class="col start wide">
+                                    <t t-esc="order.name"></t>
+                                </div>
+                                <div class="col start">
+                                    <t t-esc="order.partner_id[1]"></t>
+                                </div>
+
+                                <div class="col end">
+                                    <t t-esc="order.amount_total"></t>
+                                </div>
 
 
+
+                            </t>
                         </div>
                     </t>
                 </div>
