@@ -1,60 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
-  <data>
-    <!-- explicit list view definition -->
-<!--
-    <record model="ir.ui.view" id="paytrail_payment_gateway.list">
-      <field name="name">paytrail_payment_gateway list</field>
-      <field name="model">paytrail_payment_gateway.paytrail_payment_gateway</field>
-      <field name="arch" type="xml">
-        <tree>
-          <field name="name"/>
-          <field name="value"/>
-          <field name="value2"/>
-        </tree>
-      </field>
-    </record>
--->
+    <record id="payment_acquirer_form_paytrail" model="ir.ui.view">
+        <field name="name">payment.acquirer.form.inherit</field>
+        <field name="model">payment.acquirer</field>
+        <field name="inherit_id" ref="payment.acquirer_form"/>
+        <field name="arch" type="xml">
+            <xpath expr='//group[@name="acquirer"]' position='inside'>
+                <group attrs="{'invisible': [('provider', '!=', 'paytrail')]}">
+                    <field name="paytrail_key_secret" attrs="{'required':[ ('provider', '=', 'paytrail'), ('state', '!=', 'disabled')]}"/>
 
-    <!-- actions opening views on models -->
-<!--
-    <record model="ir.actions.act_window" id="paytrail_payment_gateway.action_window">
-      <field name="name">paytrail_payment_gateway window</field>
-      <field name="res_model">paytrail_payment_gateway.paytrail_payment_gateway</field>
-      <field name="view_mode">tree,form</field>
+                </group>
+            </xpath>
+        </field>
     </record>
--->
-
-    <!-- server action to the one above -->
-<!--
-    <record model="ir.actions.server" id="paytrail_payment_gateway.action_server">
-      <field name="name">paytrail_payment_gateway server</field>
-      <field name="model_id" ref="model_paytrail_payment_gateway_paytrail_payment_gateway"/>
-      <field name="state">code</field>
-      <field name="code">
-        action = {
-          "type": "ir.actions.act_window",
-          "view_mode": "tree,form",
-          "res_model": model._name,
-        }
-      </field>
-    </record>
--->
-
-    <!-- Top menu item -->
-<!--
-    <menuitem name="paytrail_payment_gateway" id="paytrail_payment_gateway.menu_root"/>
--->
-    <!-- menu categories -->
-<!--
-    <menuitem name="Menu 1" id="paytrail_payment_gateway.menu_1" parent="paytrail_payment_gateway.menu_root"/>
-    <menuitem name="Menu 2" id="paytrail_payment_gateway.menu_2" parent="paytrail_payment_gateway.menu_root"/>
--->
-    <!-- actions -->
-<!--
-    <menuitem name="List" id="paytrail_payment_gateway.menu_1_list" parent="paytrail_payment_gateway.menu_1"
-              action="paytrail_payment_gateway.action_window"/>
-    <menuitem name="Server to list" id="paytrail_payment_gateway" parent="paytrail_payment_gateway.menu_2"
-              action="paytrail_payment_gateway.action_server"/>
--->
-  </data>
 </odoo>

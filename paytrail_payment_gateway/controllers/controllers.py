@@ -1,21 +1,20 @@
-# -*- coding: utf-8 -*-
-# from odoo import http
+import logging
+import pprint
+import werkzeug
+from werkzeug.utils import redirect
+from odoo import http
+from odoo.http import request
+_logger = logging.getLogger(__name__)
 
 
-# class PaytrailPaymentGateway(http.Controller):
-#     @http.route('/paytrail_payment_gateway/paytrail_payment_gateway/', auth='public')
-#     def index(self, **kw):
-#         return "Hello, world"
+class AtomController(http.Controller):
+    @http.route(['/payment/paytrail/return/', '/payment/paytrail/cancel/', '/payment/paytrail/error/'],
+                type='http', auth='public', csrf=False)
+    def paytm_return(self, **post):
+        """ Paytm."""
 
-#     @http.route('/paytrail_payment_gateway/paytrail_payment_gateway/objects/', auth='public')
-#     def list(self, **kw):
-#         return http.request.render('paytrail_payment_gateway.listing', {
-#             'root': '/paytrail_payment_gateway/paytrail_payment_gateway',
-#             'objects': http.request.env['paytrail_payment_gateway.paytrail_payment_gateway'].search([]),
-#         })
-
-#     @http.route('/paytrail_payment_gateway/paytrail_payment_gateway/objects/<model("paytrail_payment_gateway.paytrail_payment_gateway"):obj>/', auth='public')
-#     def object(self, obj, **kw):
-#         return http.request.render('paytrail_payment_gateway.object', {
-#             'object': obj
-#         })
+        _logger.info(
+            'Paytrail: entering form_feedback with post data %s', pprint.pformat(post))
+        if post:
+            request.env['payment.transaction'].sudo().form_feedback(post, 'paytrail')
+        return werkzeug.utils.redirect('/payment/process')
