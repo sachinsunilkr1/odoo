@@ -11,7 +11,7 @@ class AtomController(http.Controller):
     @http.route(['/payment/paytrail/return/', '/payment/paytrail/cancel/', '/payment/paytrail/error/'],
                 type='http', auth='public', csrf=False)
     def paytm_return(self, **post):
-        """ Paytm."""
+
 
         _logger.info(
             'Paytrail: entering form_feedback with post data %s', pprint.pformat(post))

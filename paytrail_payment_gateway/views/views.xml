@@ -7,6 +7,7 @@
         <field name="arch" type="xml">
             <xpath expr='//group[@name="acquirer"]' position='inside'>
                 <group attrs="{'invisible': [('provider', '!=', 'paytrail')]}">
+                    <field name="paytrail_key_id" attrs="{'required':[ ('provider', '=', 'paytrail'), ('state', '!=', 'disabled')]}"/>
                     <field name="paytrail_key_secret" attrs="{'required':[ ('provider', '=', 'paytrail'), ('state', '!=', 'disabled')]}"/>
 
                 </group>
